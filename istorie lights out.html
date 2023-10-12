@@ -1,7 +1,14 @@
 ﻿<!DOCTYPE html>
 <html><head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<style type="text/css">            html {
+		<style type="text/css">            
+
+    .black-bar{position: fixed; z-index: 999; background-color: #000; width: 100%; height: 60%;}
+
+.top {top: 0;}
+
+
+html {
     -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
 }
@@ -173,8 +180,9 @@
 		</style>
 	</head>
 	<body>
+<div id="blackbar" class="black-bar top"></div>
 		<div onclick="hide()" class="unselectable" style="right: 0;top: 0;height: 100%;position: fixed;width: 50px; cursor: default;"></div>
-		<div class="main" id="original" style="display: block; color: white">
+		<div class="main" id="original" style="display: block; color: rgb(22, 22, 22); margin-top: 50%;">
 			<h1 id="title1">Etnogeneza</h1>
 			<div id="paragraph1" class="paragraph" style="animation: auto ease 0s 1 normal none running none;">
 				<p>Procesul de formare a poporului roman se incadreaza intr-un proces mai lung european de formare a popoarelor romanice, franceze, italiene, spaniole si retroromanice.</p>
@@ -263,7 +271,7 @@
 			
 		</div>
 		<div id="sidehover" class="sidehover" style="display: block;"></div>
-		<div id="sidebar" class="sidebar" style="width: 270px; border-right: none;">
+		<div id="sidebar" class="sidebar" style="width: 270px; border-right: none; display: none;">
 			<a onclick="title1()" class="unselectable">Etnogeneza</a>
 			<a onclick="title2()" class="unselectable">Mentiuni</a>
 			<a onclick="title3()" class="unselectable">Teoria Imigrationista</a>
@@ -369,32 +377,19 @@ document.getElementById("sidehover").onmouseover = function() {
 			}
       */
 
-			function hideAnim(className) {
-				var elements = document.getElementsByClassName(className);
-				for (var i = 0; i < elements.length; i++) {
-					elements[i].style.animation = 'none';
-				}
-			}
-
 			function hide() {
 				var original = document.getElementById("original");
-				var side = document.getElementById("sidebar");
-				if (original.style.color === "black") {
-					original.style.color = "rgb(22, 22, 22)";
-					side.style.display = "block";
-					hideAnim('paragraph');
-				} else {
 					original.style.color = "black";
-					side.style.display = "none";
-				}
 			}
 
 			function show() {
 				var original = document.getElementById("original");
-				if (original.style.color === "white") {
-					original.style.color = "black";
-				} else {
+				if (original.style.color === "rgb(22, 22, 22)") {
 					original.style.color = "white";
+                    document.getElementById("blackbar").style.display ="none";
+				} else {
+					original.style.color = "rgb(22, 22, 22)";
+                                        document.getElementById("blackbar").style.display ="block";
 				}
 			}
 
